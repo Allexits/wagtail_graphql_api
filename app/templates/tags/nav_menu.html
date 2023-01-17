@@ -1,0 +1,10 @@
+{% load base_tags wagtailcore_tags %}
+
+<div class="navbar-collapse  collapse">
+  <ul class="nav navbar-nav navbar-right">
+    {% for menuitem in menuitems %}
+   <li {%if menuitem.active %} class="active" {%endif%}>
+    <a href="{% pageurl menuitem %}" >{{ menuitem.title }}</a></li>
+    {%endfor%}
+  </ul>
+</div>

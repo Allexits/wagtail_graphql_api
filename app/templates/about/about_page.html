@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% load wagtailcore_tags%}
+
+{% block content%}
+ <!-- banner -->
+ {% include "includes/crums.html" %}
+<!-- banner -->
+  
+  
+  <div class="container">
+  <div class="spacer">
+  <div class="row">
+    <div class="col-lg-8  col-lg-offset-2">
+    {{page.body|richtext}}
+    </div>
+   
+  </div>
+  </div>
+  </div>
+{% endblock%}

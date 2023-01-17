@@ -1,0 +1,125 @@
+{% load static wagtailcore_tags wagtailuserbar base_tags %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>{% block title %}
+    {% if page.seo_title %}{{ page.seo_title }}{% else %}{{ page.title }}{% endif %}
+    {% endblock %}
+    {% block title_suffix %}
+    {% wagtail_site as current_site %}
+    {% if current_site and current_site.site_name %}- {{ current_site.site_name }}{% endif %}
+    {% endblock %} </title>
+<meta charset="UTF-8" />
+<meta name="description" content="{{self.search_description}}" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+ 	<link rel="stylesheet" href="{% static 'front/assets/bootstrap/css/bootstrap.css' %}" />
+  <link rel="stylesheet" href="{% static 'front/assets/style.css' %}"/>
+  <script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+	<script src="{% static 'front/assets/bootstrap/js/bootstrap.js' %}"></script>
+  <script src="{% static 'front/assets/script.js' %}"></script>
+
+
+
+<!-- Owl stylesheet -->
+<link rel="stylesheet" href="{% static 'front/assets/owl-carousel/owl.carousel.css' %}">
+<link rel="stylesheet" href="{% static 'front/assets/owl-carousel/owl.theme.css' %}">
+<script src="{% static 'front/assets/owl-carousel/owl.carousel.js' %}"></script>
+<!-- Owl stylesheet -->
+
+
+<!-- slitslider -->
+    <link rel="stylesheet" type="text/css" href="{% static 'front/assets/slitslider/css/style.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'front/assets/slitslider/css/custom.css' %}" />
+    <script type="text/javascript" src="{% static 'front/assets/slitslider/js/modernizr.custom.79639.js' %}"></script>
+    <script type="text/javascript" src="{% static 'front/assets/slitslider/js/jquery.ba-cond.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'front/assets/slitslider/js/jquery.slitslider.js' %}"></script>
+<!-- slitslider -->
+
+<body>
+
+
+    <!-- Header Starts -->
+    <div class="navbar-wrapper">
+    
+            <div class="navbar-inverse" role="navigation">
+              <div class="container">
+                <div class="navbar-header">
+    
+    
+                  <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                  </button>
+    
+                </div>
+                <!-- Nav Starts -->
+                {% get_site_root as site_root %}
+                {% nav_menu parent=site_root calling_page=self%}
+                <!-- #Nav Ends -->
+              </div>
+            </div>
+    
+        </div>
+    <!-- #Header Starts -->
+    <div class="container">
+    <!-- Header Starts -->
+    <div class="header">
+    <a href="/"><img src="{% static 'front/images/logo.png' %}" alt="Realestate"></a>
+    
+                  <ul class="pull-right">
+                    <li><a href="buysalerent.php">Buy</a></li>
+                    <li><a href="buysalerent.php">Sale</a></li>         
+                    <li><a href="buysalerent.php">Rent</a></li>
+                  </ul>
+    </div>
+    <!-- #Header Starts -->
+    </div>
+
+        {% block content %}{% endblock %}
+
+        {%  include "includes/footer.html"%}
+            
+            <!-- Modal -->
+            <div id="loginpop" class="modal fade">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="row">
+                    <div class="col-sm-6 login">
+                    <h4>Login</h4>
+                      <form class="" role="form">
+                    <div class="form-group">
+                      <label class="sr-only" for="exampleInputEmail2">Email address</label>
+                      <input type="email" class="form-control" id="exampleInputEmail2" placeholder="Enter email">
+                    </div>
+                    <div class="form-group">
+                      <label class="sr-only" for="exampleInputPassword2">Password</label>
+                      <input type="password" class="form-control" id="exampleInputPassword2" placeholder="Password">
+                    </div>
+                    <div class="checkbox">
+                      <label>
+                        <input type="checkbox"> Remember me
+                      </label>
+                    </div>
+                    <button type="submit" class="btn btn-success">Sign in</button>
+                  </form>          
+                    </div>
+                    <div class="col-sm-6">
+                      <h4>New User Sign Up</h4>
+                      <p>Join today and get updated with all the properties deal happening around.</p>
+                      <button type="submit" class="btn btn-info"  onclick="window.location.href='register.php'">Join Now</button>
+                    </div>
+            
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- /.modal -->
+            
+            
+            
+            </body>
+            </html>

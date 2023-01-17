@@ -1,0 +1,7 @@
+{% load base_tags wagtailcore_tags %}
+
+<ul class="row">
+{% for menuitem in menuitems %}
+    <li class="col-lg-12 col-sm-12 col-xs-3"><a href="{% pageurl menuitem %}" >{{ menuitem.title }}</a></li>
+{%endfor%}
+</ul>

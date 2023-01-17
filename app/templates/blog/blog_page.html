@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+{% block content%}
+<!-- banner -->
+{% include "includes/crums.html" %}
+  <!-- banner -->
+  
+  
+  <div class="container">
+  <div class="spacer blog">
+  <div class="row">
+    <div class="col-lg-8 col-sm-12 ">
+      {% for item in self.get_child.all%}
+      
+    <!-- blog list -->
+    <div class="row">
+                              <div class="col-lg-4 col-sm-4 "><a href="blogdetail.php" class="thumbnail"><img src="images/blog/4.jpg" alt="blog title"></a></div>
+                              <div class="col-lg-8 col-sm-8 ">
+                              <h3><a href="blogdetail.php">{{item.title}}</a></h3>
+                              <div class="info">Posted on: Jan 20, 2013</div>                                               
+                              <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.</p>
+                              <a href="blogdetail.php" class="more">Read More</a>
+                              </div>
+    </div>
+    <!-- blog list -->
+    {% endfor %}
+
+  
+  
+    </div>
+    <div class="col-lg-4 visible-lg">
+  
+    <!-- tabs -->
+    <div class="tabbable">
+                <ul class="nav nav-tabs">
+                  {% for item in related %}
+                  <li class="{%if forloop.first%} active {%endif%}"><a href="#tab{{forloop.counter}}" data-toggle="tab">{{item.title}}</a></li>
+                  {% endfor %}
+                </ul>
+
+               
+
+                <div class="tab-content">
+                  
+                  <div class="tab-pane {%if forloop.first%} active {%endif%}" id="tab{{forloop.counter}}">
+                    <ul class="list-unstyled">
+                      
+                    <li>
+                    <h5><a href="blogdetail.php">{{blog.title}}</a></h5>
+                              <div class="info">Posted on: Jan 20, 2013</div>  
+                              </li>
+                       </ul>
+                     
+                              </ul>
+                  </div>
+                  
+                </div>
+                 
+              </div>
+    <!-- tabs -->
+  
+    </div>
+  </div>
+  </div>
+  </div>
+  
+
+{% endblock %}
