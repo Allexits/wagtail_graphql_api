@@ -25,13 +25,13 @@ BASE_DIR = os.path.dirname(PROJECT_DIR)
 
 INSTALLED_APPS = [
     "home",
+    "menu",
     "search",
     "about",
     "blog",
     "agents",
     "contacts",
     "slider",
-    "wagtail_headless_preview",
     "wagtail.contrib.modeladmin",
     "wagtail.contrib.forms",
     "wagtail.contrib.redirects",
@@ -43,7 +43,8 @@ INSTALLED_APPS = [
     "wagtail.images",
     "wagtail.search",
     "wagtail.admin",
-    "wagtail",
+    "wagtail.core",
+
     "modelcluster",
     "taggit",
     "django.contrib.admin",
@@ -52,13 +53,11 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "django.contrib.sitemaps",
 
+    "wagtailorderable",
     "grapple",
     "graphene_django",
-
-    "appsalesforce",
-    "rest_framework",
-    "salesforce"
 ]
 
 MIDDLEWARE = [
@@ -88,9 +87,7 @@ TEMPLATES = [
                 "django.contrib.auth.context_processors.auth",
                 "django.contrib.messages.context_processors.messages",
             ],
-        'libraries':{
-            'base_tags': 'app.templatetags.base_tags',
-            }
+
         },
     },
 ]
@@ -188,8 +185,10 @@ WAGTAILADMIN_BASE_URL = "http://example.com"
 
 # Grapple config:
 GRAPHENE = {"SCHEMA": "grapple.schema.schema"}
+
 GRAPPLE = {
-    "APPS": ["home","about","blog","agents","contacts","slider"],
+    "APPS": ["home", "menu", "about", "blog", "agents", "contacts", "slider"]
 }
+
 GRAPPLE['EXPOSE_GRAPHIQL'] = True
 BASE_URL = 'http://localhost:8000'

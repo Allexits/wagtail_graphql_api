@@ -25,14 +25,15 @@ class AgentsType(DjangoObjectType):
 class AgentsQuery(graphene.ObjectType):
     agent = graphene.Field(AgentsType, id = graphene.Int())
     agents = graphene.List(AgentsType)
-    agentspage= graphene.List(AgentsPageType, search= graphene.String())
+    agentspage = graphene.List(AgentsPageType, search = graphene.String())
 
-    def resolve_agent(root, info, id):
+    def resolve_agent(self, info, id):
         return Agents.objects.get(pk=id)
 
-    def resolve_agents(root, info):
+    def resolve_agents(self, info):
         return Agents.objects.all()
 
-    def resolve_agentspage(self, info, search=None, **kwargs):
+    def resolve_agentspage(self, info, **kwargs):
+        search = kwargs.get('search')
         data = AgentsPage.objects.all()
         return data

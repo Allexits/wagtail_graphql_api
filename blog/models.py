@@ -1,13 +1,13 @@
 from django.db import models
 
-from wagtail.models import Page
-from wagtail.fields import RichTextField
-from wagtail.admin.panels import FieldPanel
+from wagtail.core.models import Page
+from wagtail.core.fields import RichTextField
+from wagtail.admin.edit_handlers import FieldPanel
 from wagtail.snippets.models import register_snippet
 
 
 class BlogPage(Page):
-    parent_page_types = ['home.HomePage']
+    parent_page_types = ['wagtailcore.Page']
     subpage_types = ['blog.BlogDetailPage']
 
     title_desc = models.CharField(max_length=255, null=True, blank=True)

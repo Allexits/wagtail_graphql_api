@@ -1,0 +1,9 @@
+.idea/
+*/__pycache__/*
+*/*/__pycache__/*
+media/*
+*/migrations/*
+README.md
+.DS_Store
+.venv/
+venv/

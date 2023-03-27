@@ -1,10 +1,11 @@
 from django.db import models
 
 from wagtail.core.models import Page, Orderable
-from wagtail.fields import RichTextField
-from wagtail.admin.panels import FieldPanel, InlinePanel
+from wagtail.core.fields import RichTextField
+from wagtail.admin.edit_handlers import FieldPanel, InlinePanel, MultiFieldPanel
 from modelcluster.fields import ParentalKey
 from wagtail.snippets.models import register_snippet
+from wagtail.snippets.edit_handlers import SnippetChooserPanel
 from grapple.models import GraphQLString, GraphQLImage, GraphQLForeignKey, GraphQLCollection
 
 
@@ -16,8 +17,7 @@ class AgentsPage(Page):
     
     content_panels = Page.content_panels+[
         FieldPanel('body'),
-        InlinePanel('page_agents'),
-       
+        MultiFieldPanel([InlinePanel('page_agents', label='Agent')]),
     ]
 
     graphql_fields = [
@@ -68,8 +68,9 @@ class Agents(models.Model):
 
 
 class AgentsConnection(Orderable):
-    page = ParentalKey('agents.AgentsPage', related_name='page_agents',on_delete=models.CASCADE) 
+    page = ParentalKey('agents.AgentsPage', related_name='page_agents', on_delete=models.CASCADE)
     agent = models.ForeignKey('agents.Agents',  null=True, blank=True, on_delete=models.CASCADE)
+    panels = [FieldPanel('agent')]
     graphql_fields = [
-        GraphQLForeignKey( 'agent', 'agents.Agents')
+        GraphQLForeignKey('agent', content_type='agents.Agents')
     ]

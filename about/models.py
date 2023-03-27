@@ -1,10 +1,10 @@
 from wagtail.core.models import Page
-from wagtail.fields import RichTextField
-from wagtail.admin.edit_handlers import FieldPanel 
+from wagtail.core.fields import RichTextField
+from wagtail.admin.edit_handlers import FieldPanel
 
 
 class AboutPage(Page):
-    parent_page_types = ['home.HomePage']
+    parent_page_type = ['wagtailcore.Page']
     subpage_types = []
     
     body = RichTextField(blank=True)

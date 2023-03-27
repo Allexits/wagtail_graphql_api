@@ -1,6 +1,7 @@
-from wagtail import hooks
+from wagtail.core import hooks
 from wagtail.documents.wagtail_hooks import DocumentsMenuItem
 from wagtail.snippets.wagtail_hooks import SnippetsMenuItem
+from home.queries import HomeQuery
 
 
 HIDDEN_MENU_ITEMS = (
@@ -16,4 +17,4 @@ def hide_snippets_menu_item(request, menu_items):
             if isinstance(item, menu_item_type):
                 return False
         return True
-    menu_items[:] = list(filter(is_shown, menu_items))  
+    menu_items[:] = list(filter(is_shown, menu_items))
