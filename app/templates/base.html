@@ -1,15 +1,8 @@
-{% load static wagtailcore_tags wagtailuserbar base_tags %}
-
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<title>{% block title %}
-    {% if page.seo_title %}{{ page.seo_title }}{% else %}{{ page.title }}{% endif %}
-    {% endblock %}
-    {% block title_suffix %}
-    {% wagtail_site as current_site %}
-    {% if current_site and current_site.site_name %}- {{ current_site.site_name }}{% endif %}
-    {% endblock %} </title>
+
 <meta charset="UTF-8" />
 <meta name="description" content="{{self.search_description}}" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -43,45 +36,59 @@
     <!-- Header Starts -->
     <div class="navbar-wrapper">
     
-            <div class="navbar-inverse" role="navigation">
-              <div class="container">
-                <div class="navbar-header">
-    
-    
-                  <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                  </button>
-    
-                </div>
-                <!-- Nav Starts -->
-                {% get_site_root as site_root %}
-                {% nav_menu parent=site_root calling_page=self%}
-                <!-- #Nav Ends -->
-              </div>
-            </div>
-    
         </div>
     <!-- #Header Starts -->
     <div class="container">
     <!-- Header Starts -->
     <div class="header">
-    <a href="/"><img src="{% static 'front/images/logo.png' %}" alt="Realestate"></a>
     
-                  <ul class="pull-right">
-                    <li><a href="buysalerent.php">Buy</a></li>
-                    <li><a href="buysalerent.php">Sale</a></li>         
-                    <li><a href="buysalerent.php">Rent</a></li>
-                  </ul>
+ <h1 style="color:blue">Headless CMS Wagtail with API technology</h1>
     </div>
     <!-- #Header Starts -->
     </div>
 
         {% block content %}{% endblock %}
 
-        {%  include "includes/footer.html"%}
+<div class="container">
+
+    <h2>Get Menu</h2>
+    <h4>Request: http://127.0.0.1:8000/api/graphql/</h4>
+    <pre>
+        query{
+            menus{
+                title
+                link
+                children{
+                    title
+                    link
+                }
+            }
+        }
+    </pre>
+    <h4>Response</h4>
+    <pre>
+        {
+  "data": {
+    "menus": [
+      {
+        "title": "Home",
+        "link": "/home/",
+        "children": [
+          {
+            "title": "Contacts",
+            "link": "/home/contacts/"
+          },
+          {
+            "title": "About",
+            "link": "/home/about/"
+          }
+        ]
+      }
+    ]
+  }
+}
+    </pre>
+</div>
             
             <!-- Modal -->
             <div id="loginpop" class="modal fade">
@@ -118,8 +125,6 @@
               </div>
             </div>
             <!-- /.modal -->
-            
-            
-            
-            </body>
-            </html>
+
+</body>
+ </html>

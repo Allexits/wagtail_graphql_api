@@ -8,6 +8,7 @@ from wagtail.admin import urls as wagtailadmin_urls
 from grapple import urls as grapple_urls
 
 urlpatterns = [
+    path('', include('home.urls')),
     path("api/", include(grapple_urls)),
     path("admin/", include(wagtailadmin_urls)),
 ]
