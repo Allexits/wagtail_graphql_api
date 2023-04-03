@@ -46,4 +46,4 @@ class SliderHomePage(Orderable):
     ]
 
     def __str__(self):
-        return self.slider.title
+        return self.title

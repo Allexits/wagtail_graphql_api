@@ -7,10 +7,12 @@ readme = "README.md"
 
 [tool.poetry.dependencies]
 python = "^3.9"
-psycopg2-binary = "^2.9.5"
 wagtail-orderable = "^1.1.0"
 wagtail-grapple = "^0.19.2"
 wagtail = "2.16.3"
+python-dotenv = "1.0.0"
+psycopg2 = "^2.9.5"
+django-environ = "^0.10.0"
 
 
 [build-system]
